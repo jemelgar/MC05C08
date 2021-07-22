@@ -11,6 +11,8 @@ const controlador = {
   },
   validate: (req, res) => {
     let errors = validationResult(req);
+    // res.send(errors);
+    // console.log(errors.param["email"]);
     if (errors.isEmpty()) {
       //Que pasa si no hay errores
       let userInfo = req.body;
