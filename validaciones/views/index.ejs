@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Validaciones</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+   
+  </head>
+  <body>
+    <form action="/" method="POST">
+<% if (locals.userInfo) { %>
+ 
+  <p>
+    Hola <%=userInfo.nombre %> elegiste el color: <%=userInfo.color %>, tu
+    email es: <%=userInfo.email%> y tu edad es: <%=userInfo.edad %>
+  </p>
+  
+  <% } %>
+
+      <section>
+        <label for="nombre"> Ingrese su nombre  </label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          autocomplete="off"
+          value="<%=locals.oldInfo && oldInfo.nombre ?oldInfo.nombre : ''%>"
+        />
+      <% if (locals.errors) { %>
+       <% for (let error of errors) { %>
+        <% if (error.param=='nombre') { %>
+         <p class="alert-message"> <%=error.msg  %>  </p>
+        <% } %>
+       <% } %>
+      <% } %>
+         
+         
+      </section>
+      <br>
+      <section>
+        <!-- <label for="nombre"> Ingrese su nombre</label> -->
+        <label for="color">Color Favorito </label>
+        <select name="color" id="color">
+          <option value="">Elige</option>
+          <option value="blue"  <%= locals.oldInfo && oldInfo.color==='blue' ? 'selected':''  %> >azul</option>
+          <option value="red"  <%= locals.oldInfo && oldInfo.color==='red' ? 'selected':''  %> >Rojo</option>
+        </select>
+        <% if (locals.errors) { %>
+          <% for (let error of errors) { %>
+           <% if (error.param=='color') { %>
+            <p class="alert-message"> <%=error.msg  %>  </p>
+           <% } %>
+          <% } %>
+         <% } %>
+      </section>
+      <br>
+      <section>
+        <label for="email"> Ingrese su email  </label>
+        <input
+          type="text"
+          id="email"
+          name="email"
+          autocomplete="off"
+          value="<%=locals.oldInfo && oldInfo.email ?oldInfo.email : ''%>"
+        />
+        <% if (locals.errors) { %>
+          <% for (let error of errors) { %>
+           <% if (error.param=='email') { %>
+            <p class="alert-message"> <%=error.msg  %>  </p>
+           <% } %>
+          <% } %>
+         <% } %>
+      </section>
+      <br>
+      <section>
+        <label for="edad"> Ingrese su edad  </label>
+        <input
+          type="text"
+          id="edad"
+          name="edad"
+          autocomplete="off"
+          value="<%=locals.oldInfo && oldInfo.edad ?oldInfo.edad : ''%>"
+        />
+        <% if (locals.errors) { %>
+          <% for (let error of errors) { %>
+           <% if (error.param=='edad' && error.value!='') { %>
+            <p class="alert-message"> <%=error.msg  %>  </p>
+           <% } %>
+          <% } %>
+         <% } %>
+      </section>
+      <button type="submit">Enviar</button>
+    </form>
+    
+  </body>
+</html>
