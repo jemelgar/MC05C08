@@ -5,8 +5,14 @@ const changeColor = (value) => {
 
 const controlador = {
   login: (req, res) => {
+    if (req.cookies.recordar) {
+      req.session.user = userInfo = req.cookies.recordar;
+
+      res.render("index", { title: "validaciones", userInfo });
+    } else {
+      res.render("index", { title: "validaciones" });
+    }
     //true
-    res.render("index", { title: "validaciones" });
     //más código
   },
   validate: (req, res) => {
@@ -18,7 +24,13 @@ const controlador = {
       let userInfo = req.body;
       // res.send(userInfo);
       req.session.user = userInfo;
+      //cookie
+      if (req.body.recordar != undefined) {
+        res.cookie("recordar", userInfo, { maxAge: 1000 * 60 });
+        console.log(req.cookies.recordar);
+      }
       res.render("index", { userInfo });
+
       //
     } else {
       //Qué pasa si hay errores
@@ -30,6 +42,9 @@ const controlador = {
     let usuario = req.session.user;
     res.render("profile", { usuario });
     // res.send(req.session.user);
+  },
+  checarsession: (req, res) => {
+    res.send(req.session.user);
   },
 };
 module.exports = controlador;

@@ -14,5 +14,6 @@ const Validaciones = [
 router.get("/", indexController.login);
 router.post("/", Validaciones, indexController.validate);
 router.get("/profile", indexController.profile);
+router.get("/checar", indexController.checarsession);
 
 module.exports = router;
