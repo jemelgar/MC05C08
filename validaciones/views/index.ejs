@@ -3,8 +3,17 @@
   <head>
     <title>Validaciones</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
-   
+    <% if (locals.userInfo) { %>
+     
+      <style>
+        body{
+          transition: all .3s;
+          background-color: <%=userInfo.color%>;
+        }
+        </style>
+        <% } %>
   </head>
+  
   <body>
     <form action="/" method="POST">
 <% if (locals.userInfo) { %>
@@ -41,7 +50,7 @@
         <label for="color">Color Favorito </label>
         <select name="color" id="color">
           <option value="">Elige</option>
-          <option value="blue"  <%= locals.oldInfo && oldInfo.color==='blue' ? 'selected':''  %> >azul</option>
+          <option value="blue" <%= locals.oldInfo && oldInfo.color==='blue' ? 'selected':''  %> >Azul</option>
           <option value="red"  <%= locals.oldInfo && oldInfo.color==='red' ? 'selected':''  %> >Rojo</option>
         </select>
         <% if (locals.errors) { %>
@@ -92,4 +101,5 @@
     </form>
     
   </body>
+ 
 </html>

@@ -13,5 +13,6 @@ const Validaciones = [
 /* GET home page. */
 router.get("/", indexController.login);
 router.post("/", Validaciones, indexController.validate);
+router.get("/profile", indexController.profile);
 
 module.exports = router;
