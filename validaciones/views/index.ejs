@@ -78,7 +78,7 @@
           id="edad"
           name="edad"
           autocomplete="off"
-          value="<%=locals.oldInfo && oldInfo.edad ?oldInfo.edad : ''%>"
+          value="<%=locals.oldInfo && oldInfo.edad ?oldInfo.edad : undefined%>"
         />
         <% if (locals.errors) { %>
           <% for (let error of errors) { %>

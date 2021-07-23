@@ -8,14 +8,19 @@ const controlador = {
   },
   validate: (req, res) => {
     let errors = validationResult(req);
+    console.log(errors.array());
+
     if (errors.isEmpty()) {
       //Que pasa si no hay errores
       let userInfo = req.body;
+
       res.render("index", { userInfo });
     } else {
       //Qué pasa si hay errores
       let oldInfo = req.body;
+
       res.render("index", { errors: errors.array(), oldInfo });
+      console.log(errors);
     }
   },
 };
