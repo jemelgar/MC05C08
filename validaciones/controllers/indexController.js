@@ -43,5 +43,10 @@ const controlador = {
   checarsession: (req, res) => {
     res.send(req.session.user);
   },
+  logout: (req, res) => {
+    res.clearCookie("recordar");
+    req.session.destroy();
+    res.redirect("/");
+  },
 };
 module.exports = controlador;

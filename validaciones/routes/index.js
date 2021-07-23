@@ -18,5 +18,6 @@ router.get("/", indexController.login);
 router.post("/", Validaciones, indexController.validate);
 router.get("/profile", indexController.profile);
 router.get("/checar", indexController.checarsession);
+router.get("/logout", indexController.logout);
 
 module.exports = router;
