@@ -7,7 +7,10 @@ const Validaciones = [
   body("nombre").notEmpty().withMessage("Tienes que poner un nombre"),
   body("color").notEmpty().withMessage("Tienes que seleccionar un color"),
   body("email").notEmpty().withMessage("Tienes que poner un email"),
-  body("edad").isNumeric().withMessage("Tienes que poner un número"),
+  body("edad")
+    .optional({ checkFalsy: true })
+    .isInt()
+    .withMessage("Tienes que poner un número"),
 ];
 
 /* GET home page. */
